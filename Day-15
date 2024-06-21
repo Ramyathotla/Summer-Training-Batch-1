@@ -1,1 +1,79 @@
+largestevennumber:--
+a=input()
+b=input()
+c=set()
+for i in a:
+    if(i.isdigit()):
+        c.add(i)
+for i in b:
+    if(i.isdigit()):
+        c.add(i)
+d=list(sorted(c,reverse=True))
+if(int(d[-1])%2==0):
+    print(''.join(d))
+else:
+    for i in range(len(c)-2,-1,-1):
+        if(int(d[i])%2==0):
+            d.append(d.pop(i))
+            print(''.join(d))
+            break
+    else:
+        print(-1)
+-----------------------------------------------------------------------------------------------------------------------
+ightbuilding:--
+arr = [2, 5, 2, 3, 6, 7, 1, 0, 5, 7]
+sunrise=0
+max_mrng=0
+for height in arr:
+    if height>max_mrng:
+        sunrise+=1
+        max_mrng=height
+sunset=0
+max_evng=0
+for height in reversed(arr):
+    if height>max_evng:
+        sunset+=1
+        max_evng=height
+print(sunrise)
+print(sunset)
+------------------------------------------------------------------------------------------------------------
+n-queens:--
+def queen(r):
+    if(r==n):
+        return
+    if(r!=u):
+        for c in range(n):
+            if(check(r,c)):
+                m[r][c]=1
+                break
+        return queen(r+1)
+def check(i,j):
+    if(i==u):
+        return 0
+    elif(j==v):
+        return 0
+    r,c=i,j
+    for i in range(r+1):
+        if(m[i][j]==1):
+            return 0
+    i=r
+    while(i>=0 and j>=0):
+        if(m[i][j]==1):
+            return 0
+        i=i-1
+        j=j-1
+    while(r>=0 and c<n):
+        if(m[r][c]==1):
+            return 0
+        r=r-1
+        c=c+1
+    return 1
+n=5
+u=1
+v=3
+m=[]
+for i in range(n):
+    m.append([0]*n)
 
+queen(0)
+print(m)
